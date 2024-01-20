@@ -20,7 +20,8 @@ class User < ApplicationRecord
     # Associations
     has_many :orders
     has_one :cart
-  
+    has_many :activities
+
     # Methods
     def full_name
       "#{first_name} #{last_name}"
@@ -30,5 +31,4 @@ class User < ApplicationRecord
   after_validation :geocode, if: ->(obj){ obj.address.present? && obj.address_changed? }
 end
 
-  end
-  
+end
