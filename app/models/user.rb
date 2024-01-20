@@ -25,5 +25,10 @@ class User < ApplicationRecord
     def full_name
       "#{first_name} #{last_name}"
     end
+
+    geocoded_by :address
+  after_validation :geocode, if: ->(obj){ obj.address.present? && obj.address_changed? }
+end
+
   end
   
